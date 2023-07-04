@@ -19,10 +19,21 @@ import {
 } from "./customComponent/customComponent";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
+
+export const headMenu = [
+  "ILP",
+  "INVI",
+  "Loan",
+  "Swap",
+  "My Asset",
+  "Docs",
+  "Contract",
+];
 
 function App() {
   const [totalValueLocked, setTotalValuelocked] = useState(0);
-
+  const navigate = useNavigate();
   useEffect(() => {
     Aos.init();
     let start = totalValueLocked;
@@ -41,15 +52,7 @@ function App() {
       clearInterval(countUp);
     };
   }, [totalValueLocked]);
-  const headMenu = [
-    "ILP",
-    "INVI",
-    "Loan",
-    "Swap",
-    "My Asset",
-    "Docs",
-    "Contract",
-  ];
+
   return (
     <EContainer>
       <GlobalStyle />
@@ -75,6 +78,9 @@ function App() {
               fontSize: "0.9rem",
               paddingLeft: "1.5rem",
               color: "#f6f7fccc",
+            }}
+            onClick={() => {
+              navigate("/ilp");
             }}
           >
             {element}
