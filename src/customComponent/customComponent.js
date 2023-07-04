@@ -25,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
       transform: translateX(0px);
     }
     100%{
-      transform: translateX(10px);
+      transform: translateX(15px);
     }
   }
   @keyframes wordAnimation {
@@ -137,6 +137,13 @@ export const SmallView = styled.div`
     rgba(131, 58, 180, 0.7833508403361344) 100%
   );
   padding: 0.05rem 1rem;
-  margin-right: 2px;
+  margin-right: 5px;
   border-radius: 20px;
+`;
+
+export const ChainBtn = styled.div`
+  background-color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  min-width: 20vw;
 `;

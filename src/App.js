@@ -16,6 +16,7 @@ import {
   ColumnFlexBox,
   CustomBtn,
   SmallView,
+  ChainBtn,
 } from "./customComponent/customComponent";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -208,38 +209,6 @@ function App() {
               risk.
             </Word>
           </ColumnFlexBox>
-
-          <Image
-            src={require("./img/howitworks1.png")}
-            alt="howitworks"
-            style={{ width: "80vw" }}
-            data-aos="fade-up"
-          />
-          <CustomBtn>
-            <Word white bold style={{ fontSize: "2rem" }}>
-              Stake
-            </Word>
-            <div>
-              <ArrowForwardIcon color="white" boxSize={10} />
-            </div>
-          </CustomBtn>
-        </ColumnFlexBox>
-        <ColumnFlexBox style={{ alignItems: "center", marginTop: "15%" }}>
-          <ColumnFlexBox
-            style={{ alignItems: "flex-start", marginBottom: "5%" }}
-          >
-            <Word white bold style={{ fontSize: "3rem", marginBottom: "2rem" }}>
-              How it works
-            </Word>
-            <Word white style={{ fontSize: "1.5rem" }}>
-              The invincible node as a contributor of ecosystem’s
-              sustainability,
-            </Word>
-            <Word white style={{ fontSize: "1.5rem" }}>
-              it’s aiming to enable users to earn maximized profits without
-              risk.
-            </Word>
-          </ColumnFlexBox>
           <RowFlexBox style={{ alignItems: "center" }}>
             <SmallView>
               <Word white bold style={{ fontSize: "2rem" }}>
@@ -258,7 +227,40 @@ function App() {
               Stake asset & Receive Transferrable NFT
             </Word>
           </RowFlexBox>
-
+          <Image
+            src={require("./img/howitworks1.png")}
+            alt="howitworks"
+            style={{ width: "80vw" }}
+            data-aos="fade-up"
+          />
+          <CustomBtn>
+            <Word white bold style={{ fontSize: "2rem" }}>
+              Stake
+            </Word>
+            <div>
+              <ArrowForwardIcon color="white" boxSize={10} />
+            </div>
+          </CustomBtn>
+        </ColumnFlexBox>
+        <ColumnFlexBox style={{ alignItems: "center", marginTop: "15%" }}>
+          <RowFlexBox style={{ alignItems: "center" }}>
+            <SmallView>
+              <Word white bold style={{ fontSize: "2rem" }}>
+                2
+              </Word>
+            </SmallView>
+            <Word
+              white
+              bold
+              style={{
+                fontSize: "2rem",
+                margin: "4rem 0rem",
+                letterSpacing: "1px",
+              }}
+            >
+              Get perks by Borrowing & Staking INVI
+            </Word>
+          </RowFlexBox>
           <Image
             src={require("./img/howitworks2.png")}
             alt="howitworks"
@@ -275,8 +277,60 @@ function App() {
           </CustomBtn>
         </ColumnFlexBox>
       </UContainer>
-      <UContainer></UContainer>
-      <UContainer></UContainer>
+      <UContainer style={{ alignItems: "center", marginTop: "20vh" }}>
+        <RowFlexBox>
+          <ColumnFlexBox style={{ alignItems: "flex-start" }}>
+            <Word white bold style={{ fontSize: "2rem" }}>
+              Participate as LP
+            </Word>
+            <Word white style={{ fontSize: "1.5rem" }}>
+              The invincible node is highly
+              <br />
+              incentivizing people to participate
+              <br />
+              in providing liquidity activity. Get ILP by supplying liquidity to
+              the pool,
+              <br />
+              earn perks as the network's native token.
+            </Word>
+            <Word white bold style={{ fontSize: "2rem", marginTop: "2rem" }}>
+              Enable users to utilize the Invincible!
+            </Word>
+            <CustomBtn>
+              <Word white bold style={{ fontSize: "2rem" }}>
+                Buy & Earn
+              </Word>
+              <div>
+                <ArrowForwardIcon color="white" boxSize={10} />
+              </div>
+            </CustomBtn>
+          </ColumnFlexBox>
+          <Image
+            src={require("./img/howitworks3.png")}
+            alt="howitworks"
+            style={{ width: "60vw" }}
+            data-aos="fade-up"
+          />
+        </RowFlexBox>
+      </UContainer>
+      <UContainer>
+        <ColumnFlexBox style={{ alignItems: "center" }}>
+          <Word white bold style={{ fontSize: "2rem", marginTop: "2rem" }}>
+            Stake on your preferred network
+          </Word>
+          <RowFlexBox>
+            <ChainBtn>
+              <Word bold>Ton</Word>
+            </ChainBtn>
+            <ChainBtn>
+              <Word bold>Ton</Word>
+            </ChainBtn>
+            <ChainBtn>
+              <Word bold>Ton</Word>
+            </ChainBtn>
+          </RowFlexBox>
+        </ColumnFlexBox>
+      </UContainer>
     </EContainer>
   );
 }
