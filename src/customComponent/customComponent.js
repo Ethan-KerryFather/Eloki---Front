@@ -104,7 +104,7 @@ export const ColumnFlexBox = styled.div`
 export const Word = styled.p`
   font-family: ${(props) => (props.bold ? "pre-bold" : "pre-normal")};
   color: ${(props) => (props.white ? "white" : "black")};
-
+  font-size: 3rem;
   &:hover {
     color: ${(props) => props.hover && "white"} !important;
   }
@@ -126,6 +126,10 @@ export const CustomBtn = styled.button`
   div {
     animation: btnAnimation 1s cubic-bezier(0.075, 0.82, 0.165, 1) infinite
       alternate;
+  }
+
+  &:hover p {
+    color: black;
   }
 `;
 

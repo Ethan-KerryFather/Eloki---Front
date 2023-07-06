@@ -25,7 +25,7 @@ export const Header = () => {
             letterSpacing: "0.2rem",
           }}
         >
-          INVI
+          QEQE
         </Word>
       </RowFlexBox>
 

@@ -22,15 +22,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 
-export const headMenu = [
-  "ILP",
-  "INVI",
-  "Loan",
-  "Swap",
-  "My Asset",
-  "Docs",
-  "Contract",
-];
+export const headMenu = ["NAVI", "Loan", "Swap", "Stake", "Pool", "RoadMap"];
 
 function App() {
   const [totalValueLocked, setTotalValuelocked] = useState(0);
@@ -69,7 +61,7 @@ function App() {
             letterSpacing: "0.2rem",
           }}
         >
-          INVI
+          NAVI
         </Word>
         {headMenu.map((element, index) => (
           <Word
@@ -98,7 +90,7 @@ function App() {
             boxShadow: "5px 5px 22px 3px rgba(0,0,0,0.57)",
           }}
         >
-          <Word bold style={{ color: "black" }}>
+          <Word bold style={{ color: "black", fontSize: "1rem" }}>
             Launch App
           </Word>
         </div>
@@ -140,23 +132,25 @@ function App() {
                     "wordAnimation 12s cubic-bezier(.48,1.82,.97,.43) infinite ",
                 }}
               >
+                <Word
+                  white
+                  bold
+                  style={{ fontSize: "5rem", color: "aqua" }}
+                ></Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  Invincible leverage staking
+                  NAVI Loan
                 </Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  Invincible Loan
+                  NAVI Swap
                 </Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  Invincible Swap
+                  NAVI Staking
                 </Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  Invincible QVE
+                  NAVI Liquidity pool
                 </Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  Yours
-                </Word>
-                <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  Mines
+                  NAVI Gamble
                 </Word>
               </div>
             </div>
