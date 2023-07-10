@@ -5,35 +5,57 @@ import PretendardVariable from "./font/PretendardVariable.ttf";
 import { Button, Image } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { ArrowForwardIcon, CheckIcon } from "@chakra-ui/icons";
+import Web3 from "web3";
 import {
   GlobalStyle,
   EContainer,
   UContainer,
   Word,
-  Chunk,
   Menu,
   RowFlexBox,
   ColumnFlexBox,
   CustomBtn,
   SmallView,
   ChainBtn,
+  Chunk,
 } from "./customComponent/customComponent";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
+import { asset } from "./asset/asset";
 
-export const headMenu = ["NAVI", "Loan", "Swap", "Stake", "Pool", "RoadMap"];
+export const web3 = new Web3(
+  new Web3.providers.HttpProvider("https://mainnet-rpc.thundercore.io")
+);
+
+export const headMenu = ["Eloki", "Loan", "Swap", "Stake", "Pool", "RoadMap"];
 
 function App() {
   const [totalValueLocked, setTotalValuelocked] = useState(0);
+  const [tokenBalance, setTokenBalance] = useState("");
   const navigate = useNavigate();
+
+  const getBalance = async () => {
+    const TokenContract = new web3.eth.Contract(asset.abi, asset.CA);
+
+    TokenContract.methods
+      .totalSupply()
+      .call()
+      .then((result) => web3.utils.fromWei(result, "ether"))
+      .then((result) => setTokenBalance(result.toLocaleString()));
+  };
+
+  useEffect(() => {
+    getBalance();
+  }, []);
+
   useEffect(() => {
     Aos.init();
+
     let start = totalValueLocked;
     const countUp = setInterval(() => {
-      console.log("count up");
       if (start < 100000) {
-        start += 100;
+        start += 800;
         setTotalValuelocked(start);
       } else {
         setTotalValuelocked(100000);
@@ -50,7 +72,12 @@ function App() {
     <EContainer>
       <GlobalStyle />
       <Menu>
-        <img src={Logo} alt="logo" />
+        {/* <img src={Logo} alt="logo" /> */}
+        <img
+          src={require("./asset/Eloki.png")}
+          alt="logo"
+          style={{ width: "50px", marginRight: "5px" }}
+        />
         <Word
           bold
           white
@@ -61,7 +88,7 @@ function App() {
             letterSpacing: "0.2rem",
           }}
         >
-          NAVI
+          Eloki
         </Word>
         {headMenu.map((element, index) => (
           <Word
@@ -73,7 +100,25 @@ function App() {
               color: "#f6f7fccc",
             }}
             onClick={() => {
-              navigate("/ilp");
+              switch (element) {
+                case "Eloki":
+                  navigate("/ilp");
+                  break;
+                case "Loan":
+                  navigate("/loan");
+                  break;
+                case "Swap":
+                  navigate("/swap");
+                  break;
+                case "Stake":
+                  navigate("/stake");
+                  break;
+                case "pool":
+                  navigate("/pool");
+                  break;
+                default:
+                  break;
+              }
             }}
           >
             {element}
@@ -138,19 +183,19 @@ function App() {
                   style={{ fontSize: "5rem", color: "aqua" }}
                 ></Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  NAVI Loan
+                  Eloki Loan
                 </Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  NAVI Swap
+                  Eloki Swap
                 </Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  NAVI Staking
+                  Eloki Staking
                 </Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  NAVI Liquidity pool
+                  Eloki Liquidity pool
                 </Word>
                 <Word white bold style={{ fontSize: "5rem", color: "aqua" }}>
-                  NAVI Gamble
+                  Eloki Gamble
                 </Word>
               </div>
             </div>
@@ -171,6 +216,48 @@ function App() {
           <Word white bold style={{ fontSize: "2rem", marginTop: "10px" }}>
             Total Value Locked : ${totalValueLocked.toLocaleString()}
           </Word>
+          <RowFlexBox style={{ alignItems: "center" }}>
+            <span
+              style={{
+                fontSize: "2rem",
+                fontFamily: "pre-bold",
+                color: "white",
+              }}
+              bold
+            >
+              Total ELKI :
+            </span>
+            <Image
+              src={require("./asset/Eloki.png")}
+              style={{ width: "100px" }}
+            />
+            <span style={{ fontSize: "4rem" }}>X</span>
+            <span
+              white
+              style={{
+                fontSize: "2rem",
+                fontFamily: "pre-bold",
+                marginLeft: "10px",
+              }}
+              bold
+            >
+              {tokenBalance.toLocaleString()}
+            </span>
+          </RowFlexBox>
+          <SmallView
+            style={{
+              justifyContent: "center",
+              height: "6rem",
+              alignItems: "center",
+              marginTop: "10px",
+              borderRadius: "137px 10px 137px 10px",
+              border: " 1px double #000000",
+            }}
+          >
+            <Word bold white style={{ fontSize: "4rem" }}>
+              Airdrop Here
+            </Word>
+          </SmallView>
         </div>
         <RowFlexBox
           style={{
@@ -271,7 +358,14 @@ function App() {
           </CustomBtn>
         </ColumnFlexBox>
       </UContainer>
-      <UContainer style={{ alignItems: "center", marginTop: "20vh" }}>
+      <UContainer
+        style={{
+          alignItems: "center",
+          marginTop: "20vh",
+          marginLeft: "5vw",
+          marginRight: "5vw",
+        }}
+      >
         <RowFlexBox>
           <ColumnFlexBox style={{ alignItems: "flex-start" }}>
             <Word white bold style={{ fontSize: "2rem" }}>
@@ -309,22 +403,84 @@ function App() {
       </UContainer>
       <UContainer>
         <ColumnFlexBox style={{ alignItems: "center" }}>
-          <Word white bold style={{ fontSize: "2rem", marginTop: "2rem" }}>
-            Stake on your preferred network
+          <Word white bold style={{ fontSize: "4rem" }}>
+            <span style={{ color: "#870e28", fontSize: "5rem" }}>$ELOKI</span>s
+            are on ThunderCore
           </Word>
-          <RowFlexBox>
-            <ChainBtn>
-              <Word bold>Ton</Word>
-            </ChainBtn>
-            <ChainBtn>
-              <Word bold>Ton</Word>
-            </ChainBtn>
-            <ChainBtn>
-              <Word bold>Ton</Word>
-            </ChainBtn>
-          </RowFlexBox>
+          <Image
+            src="https://www.thundercore.com/3DLogo.png"
+            style={{
+              maxWidth: "30vw",
+              margin: "8vh 0px 0px 0px",
+              animation:
+                "rotateAnimation 2s cubic-bezier(.6,1.24,.67,.68) infinite alternate-reverse",
+            }}
+            data-aos="fade-up"
+          />
         </ColumnFlexBox>
       </UContainer>
+      <ColumnFlexBox
+        style={{
+          width: "100vw",
+          height: "19vh",
+          backgroundColor: "white",
+          overflow: "hidden",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <RowFlexBox style={{ alignItems: "center", justifyContent: "center" }}>
+          <Image src={require("./asset/Eloki.png")} style={{ height: "40%" }} />
+          <ColumnFlexBox>
+            <Word bold style={{ color: "#030063", fontSize: "2rem" }}>
+              $Eloki Tokenomics
+            </Word>
+            <Word style={{ color: "#030063", fontSize: "1.5rem" }}>
+              If you want to know more about $Eloki, come and check this
+            </Word>
+          </ColumnFlexBox>
+
+          <SmallView
+            style={{
+              marginLeft: "10vw",
+              height: "30%",
+              alignItems: "center",
+            }}
+          >
+            <Word bold white style={{ fontSize: "2rem" }}>
+              Tokenomics
+            </Word>
+          </SmallView>
+        </RowFlexBox>
+      </ColumnFlexBox>
+      <ColumnFlexBox
+        style={{
+          width: "100vw",
+          height: "19vh",
+          backgroundColor: "#000000ee",
+          overflow: "hidden",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <RowFlexBox>
+          <ColumnFlexBox>
+            <Word white style={{ fontSize: "1rem" }}>
+              Terms and Conditions
+            </Word>
+            <Word white style={{ fontSize: "1rem" }}>
+              Terms and Conditions
+            </Word>
+            <Word white style={{ fontSize: "1rem" }}>
+              Terms and Conditions
+            </Word>
+            <Word white style={{ fontSize: "1rem" }}>
+              Terms and Conditions
+            </Word>
+          </ColumnFlexBox>
+          <RowFlexBox></RowFlexBox>
+        </RowFlexBox>
+      </ColumnFlexBox>
     </EContainer>
   );
 }

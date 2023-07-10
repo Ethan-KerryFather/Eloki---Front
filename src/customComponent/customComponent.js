@@ -143,6 +143,7 @@ export const SmallView = styled.div`
   padding: 0.05rem 1rem;
   margin-right: 5px;
   border-radius: 20px;
+  display: flex;
 `;
 
 export const ChainBtn = styled.div`
@@ -150,4 +151,13 @@ export const ChainBtn = styled.div`
   padding: 1rem 2rem;
   display: flex;
   min-width: 20vw;
+`;
+
+export const ShadowBox = styled.div`
+  display: flex;
+  background-color: white;
+  width: 80vw;
+  border-radius: 30px;
+  margin-top: 30px;
+  box-shadow: 14px 13px 77px -20px rgba(0, 0, 0, 0.98);
 `;

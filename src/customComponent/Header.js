@@ -14,7 +14,11 @@ export const Header = () => {
           navigate("/");
         }}
       >
-        <img src={Logo} alt="logo" />
+        <img
+          src={require("../asset/Eloki.png")}
+          alt="logo"
+          style={{ width: "50px", marginRight: "5px" }}
+        />
         <Word
           bold
           white
@@ -25,7 +29,7 @@ export const Header = () => {
             letterSpacing: "0.2rem",
           }}
         >
-          QEQE
+          Eloki
         </Word>
       </RowFlexBox>
 
@@ -39,7 +43,25 @@ export const Header = () => {
             color: "#f6f7fccc",
           }}
           onClick={() => {
-            navigate("/ilp");
+            switch (element) {
+              case "Eloki":
+                navigate("/ilp");
+                break;
+              case "Loan":
+                navigate("/loan");
+                break;
+              case "Swap":
+                navigate("/swap");
+                break;
+              case "Stake":
+                navigate("/stake");
+                break;
+              case "pool":
+                navigate("/pool");
+                break;
+              default:
+                break;
+            }
           }}
         >
           {element}

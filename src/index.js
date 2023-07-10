@@ -5,7 +5,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-import ILP_Page from "./pages/ilp/ILP_Page";
+import Loan from "./pages/loan/LoanPage";
+import ElokiPage from "./pages/ilp/ElokiPage";
+import StakePage from "./pages/stake/StakePage";
+import SwapPage from "./pages/swap/SwapPage";
+import PoolPage from "./pages/pool/PoolPage";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +18,23 @@ const router = createBrowserRouter([
   },
   {
     path: "/ilp",
-    element: <ILP_Page />,
+    element: <ElokiPage />,
+  },
+  {
+    path: "/loan",
+    element: <Loan />,
+  },
+  {
+    path: "/stake",
+    element: <StakePage />,
+  },
+  {
+    path: "/swap",
+    element: <SwapPage />,
+  },
+  {
+    path: "/pool",
+    element: <PoolPage />,
   },
 ]);
 
