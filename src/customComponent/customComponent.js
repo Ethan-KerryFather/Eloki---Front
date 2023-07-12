@@ -1,6 +1,6 @@
-import { createGlobalStyle, styled } from "styled-components";
+import { createGlobalStyle, css, styled } from "styled-components";
 import PretendardVariable from "../font/PretendardVariable.ttf";
-
+import ShadowInto from "../font/ShadowInto.ttf";
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'pre-bold';
@@ -11,6 +11,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'pre-normal';
     src:  url(${PretendardVariable}) format('truetype');
     font-weight: 500;
+  }
+  @font-face {
+    font-family: 'shadow-into';
+    src: url(${ShadowInto}) format('truetype');
   }
   @keyframes rotateAnimation {
     0%{
@@ -72,14 +76,14 @@ export const EContainer = styled.div`
     rgba(45, 219, 253, 0.5368522408963585) 100%
   );
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
 `;
 
 export const Chunk = styled.div``;
 
 export const UContainer = styled.div`
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   min-height: 100vh;
 `;
 export const Menu = styled.div`
@@ -93,12 +97,21 @@ export const Menu = styled.div`
 
 export const RowFlexBox = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
 `;
 
 export const ColumnFlexBox = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-flow: ${(props) => (props.row ? "row nowrap" : "column nowrap")};
+  background-color: white;
+  box-shadow: ${(props) =>
+    props.shadow && "-1px 14px 47px -20px rgba(0,0,0,0.36)"};
+  border-radius: ${(props) => (props.radius ? "7px" : "0px")};
 `;
 
 export const Word = styled.p`
@@ -108,6 +121,21 @@ export const Word = styled.p`
   &:hover {
     color: ${(props) => props.hover && "white"} !important;
   }
+`;
+
+export const Words = styled.p`
+  font-family: ${(props) =>
+    props.bold ? "pre-bold" : props.shadow ? "shadow-into" : "pre-normal"};
+  color: ${(props) =>
+    props.white
+      ? "white"
+      : props.blue
+      ? "blue"
+      : props.gray
+      ? "gray"
+      : "black"};
+  font-size: 3rem;
+  letter-spacing: ${(props) => props.letterspace && "1px"};
 `;
 
 export const CustomBtn = styled.button`
@@ -160,4 +188,16 @@ export const ShadowBox = styled.div`
   border-radius: 30px;
   margin-top: 30px;
   box-shadow: 14px 13px 77px -20px rgba(0, 0, 0, 0.98);
+`;
+
+export const TokenBtn = styled(RowFlexBox)`
+  border: 1px solid black;
+  padding: 2px;
+  justify-content: center;
+  border-radius: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  &:hover {
+    background-color: #0000d040;
+  }
 `;

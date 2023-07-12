@@ -4,11 +4,13 @@ import {
   ColumnFlexBox,
   CustomBtn,
   EContainer,
+  GlobalStyle,
   RowFlexBox,
   UContainer,
   Word,
 } from "../../customComponent/customComponent";
 import { Header } from "../../customComponent/Header";
+import FooterTokenomics from "../../customComponent/FooterTokenomics";
 
 function ElokiPage() {
   return (
@@ -21,10 +23,10 @@ function ElokiPage() {
             margin: "8vh 10vw 0vh 10vw",
           }}
         >
-          <Word white bold>
+          <Word white bold style={{ fontFamily: "shadow-into" }}>
             About Eloki
           </Word>
-          <Word white style={{ fontSize: "1.5rem" }}>
+          <Word white style={{ fontSize: "1.5rem", fontFamily: "shadow-into" }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
             laboriosam totam maxime quasi ipsam impedit maiores unde, molestias
             tenetur saepe similique corporis. Eaque vitae architecto harum sunt
@@ -32,8 +34,8 @@ function ElokiPage() {
           </Word>
         </ColumnFlexBox>
       </UContainer>
-      <UContainer style={{ minHeight: "100vh" }}></UContainer>
-      <UContainer style={{ minHeight: "100vh" }}></UContainer>
+
+      <FooterTokenomics />
     </EContainer>
   );
 }

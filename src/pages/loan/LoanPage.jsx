@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Chunk,
   ColumnFlexBox,
@@ -7,11 +7,19 @@ import {
   RowFlexBox,
   ShadowBox,
   SmallView,
+  TokenBtn,
   UContainer,
   Word,
 } from "../../customComponent/customComponent";
 import { Header } from "../../customComponent/Header";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
+import {
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+} from "recharts";
 import {
   Button,
   Highlight,
@@ -30,11 +38,19 @@ import {
   PopoverTrigger,
   Portal,
   Stack,
+  Stat,
+  StatArrow,
+  StatGroup,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
 } from "@chakra-ui/react";
 import { CheckIcon, PhoneIcon } from "@chakra-ui/icons";
+import FooterTokenomics from "../../customComponent/FooterTokenomics";
+import ConnnectMetamask from "../../customComponent/ConnectMetamask";
 
 function Loan() {
-  const data = [
+  const [data, setData] = useState([
     { uv: 800, pv: 2400, amt: 2400 },
     { uv: 700, pv: 2400, amt: 2400 },
     { uv: 600, pv: 2400, amt: 2400 },
@@ -50,11 +66,64 @@ function Loan() {
     { uv: 502, pv: 2400, amt: 2400 },
     { uv: 700, pv: 2400, amt: 2400 },
     { uv: 800, pv: 2400, amt: 2400 },
-  ];
+  ]);
+
+  const [leash, setLeash] = useState([
+    { uv: 90, pv: 2400, amt: 2400 },
+    { uv: 100, pv: 2400, amt: 2400 },
+    { uv: 96, pv: 2400, amt: 2400 },
+    { uv: 100, pv: 2400, amt: 2400 },
+    { uv: 100, pv: 2400, amt: 2400 },
+    { uv: 100, pv: 2400, amt: 2400 },
+    { uv: 100, pv: 2400, amt: 2400 },
+    { uv: 104, pv: 2400, amt: 2400 },
+    { uv: 103, pv: 2400, amt: 2400 },
+    { uv: 102, pv: 2400, amt: 2400 },
+    { uv: 97, pv: 2400, amt: 2400 },
+    { uv: 103, pv: 2400, amt: 2400 },
+    { uv: 100, pv: 2400, amt: 2400 },
+    { uv: 110, pv: 2400, amt: 2400 },
+    { uv: 130, pv: 2400, amt: 2400 },
+  ]);
+
+  const [chosenToken, setChosenToken] = useState("choose your token");
+  const [elokiAmount, setElokiAmount] = useState();
+  const tokenList = useRef(["ELOKI", "LEASH"]).current;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setData((prevData) => {
+        const newData = [...prevData];
+        newData.shift();
+        newData.push({
+          uv: Math.floor(Math.random() * 100) + 600, // 이 부분을 적절하게 변경해야 합니다.
+          pv: 2400,
+          amt: 2400,
+        });
+
+        return newData;
+      });
+
+      setLeash((prevData) => {
+        const newData = [...prevData];
+        newData.shift();
+        newData.push({
+          uv: Math.floor(Math.random() * 20) + 90, // 이 부분을 적절하게 변경해야 합니다.
+          pv: 2400,
+          amt: 2400,
+        });
+
+        return newData;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval); // 컴포넌트가 언마운트될 때 인터벌을 정리합니다.
+  }, []);
 
   return (
     <EContainer>
       <Header />
+      <ConnnectMetamask />
       <UContainer style={{ minHeight: "100vh" }}>
         <ColumnFlexBox
           style={{
@@ -68,24 +137,40 @@ function Loan() {
           <Word white>
             <Highlight
               query="Eloki"
-              styles={{ px: "6", py: "0", bg: "#cdbb1b20", rounded: "full" }}
+              styles={{
+                px: "6",
+                py: "0",
+                bg: "#cdbb1b20",
+                rounded: "full",
+                fontFamily: "shadow-into",
+              }}
             >
-              Deposit $Eloki
+              Deposit $Eloki,&nbsp;
             </Highlight>
             <Highlight
               query="Leash"
-              styles={{ px: "6", py: "0", bg: "#cdbb1b20", rounded: "full" }}
+              styles={{
+                px: "6",
+                py: "0",
+                bg: "#cdbb1b20",
+                rounded: "full",
+                fontFamily: "shadow-into",
+              }}
             >
               and get Eloki's $Leash
             </Highlight>
           </Word>
-          <Word white style={{ fontSize: "1.5rem" }}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-            laboriosam totam maxime quasi ipsam impedit maiores unde, molestias
-            tenetur saepe similique corporis. Eaque vitae architecto harum sunt
-            inventore similique consequuntur.
+          <Word
+            white
+            style={{
+              fontSize: "1.5rem",
+              fontFamily: "shadow-into",
+              marginTop: "2vh",
+            }}
+          >
+            Deposit Your $ELKI, And get Stable $Leash
           </Word>
-          <ShadowBox>
+          <ShadowBox style={{ flexWrap: "nowrap" }}>
             <ColumnFlexBox
               style={{
                 width: "50%",
@@ -94,10 +179,45 @@ function Loan() {
                 padding: "5vh 0vh 5vh 0vh",
               }}
             >
+              <ResponsiveContainer width="100%" height="50%">
+                <LineChart data={data} data-aos="fade-up">
+                  <Line type="monotone" dataKey="uv" stroke="#ff0000" />
+                  <CartesianGrid stroke="#00000080" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                </LineChart>
+              </ResponsiveContainer>
+
+              <Chunk style={{ width: "100%" }}>
+                <StatGroup style={{ marginLeft: "5%" }}>
+                  <Stat>
+                    <StatLabel>Eloki Price(TT)</StatLabel>
+                    <StatNumber>{data[data.length - 1].uv}</StatNumber>
+                    <StatHelpText>
+                      {(
+                        ((data[data.length - 1].uv - data[data.length - 2].uv) /
+                          data[data.length - 2].uv) *
+                        100
+                      ).toFixed(2) > 0 ? (
+                        <StatArrow type="increase" />
+                      ) : (
+                        <StatArrow type="decrease" />
+                      )}
+                      {(
+                        ((data[data.length - 1].uv - data[data.length - 2].uv) /
+                          data[data.length - 2].uv) *
+                        100
+                      ).toFixed(2)}
+                      %
+                    </StatHelpText>
+                  </Stat>
+                </StatGroup>
+              </Chunk>
+              {/* chart2 */}
               <LineChart
                 width={700}
-                height={400}
-                data={data}
+                height={150}
+                data={leash}
                 data-aos="fade-up"
               >
                 <Line type="monotone" dataKey="uv" stroke="#ff0000" />
@@ -105,21 +225,39 @@ function Loan() {
                 <XAxis dataKey="name" />
                 <YAxis />
               </LineChart>
-              <Word
-                bold
-                style={{
-                  fontSize: "1.4rem",
-                  alignSelf: "flex-start",
-                  marginLeft: "10%",
-                }}
-              >
-                Price<p>770</p>
-              </Word>
+              <Chunk style={{ width: "100%" }}>
+                <StatGroup style={{ marginLeft: "5%" }}>
+                  <Stat>
+                    <StatLabel>leash Price(TT)</StatLabel>
+                    <StatNumber>{leash[leash.length - 1].uv}</StatNumber>
+                    <StatHelpText>
+                      {(
+                        ((leash[leash.length - 1].uv -
+                          leash[leash.length - 2].uv) /
+                          leash[leash.length - 2].uv) *
+                        100
+                      ).toFixed(2) > 0 ? (
+                        <StatArrow type="increase" />
+                      ) : (
+                        <StatArrow type="decrease" />
+                      )}
+                      {(
+                        ((leash[leash.length - 1].uv -
+                          leash[leash.length - 2].uv) /
+                          leash[leash.length - 2].uv) *
+                        100
+                      ).toFixed(2)}
+                      %
+                    </StatHelpText>
+                  </Stat>
+                </StatGroup>
+              </Chunk>
             </ColumnFlexBox>
             <ColumnFlexBox
               style={{
                 width: "100%",
-                padding: "30px",
+                paddingTop: "60px",
+                paddingLeft: "60px",
               }}
             >
               <Chunk>
@@ -129,7 +267,7 @@ function Loan() {
                       step 1
                     </Word>
                   </SmallView>
-                  <Word bold style={{ fontSize: "2rem", marginLeft: "10px" }}>
+                  <Word style={{ fontSize: "2rem", marginLeft: "10px" }}>
                     Put your Eloki
                   </Word>
                 </RowFlexBox>
@@ -147,11 +285,24 @@ function Loan() {
                     fontSize="2rem"
                     children="$"
                   />
-                  <Input placeholder="Enter Your $ELOKI amount" />
+                  <Input
+                    placeholder="Enter Your $ELOKI amount"
+                    value={elokiAmount}
+                    type="number"
+                    onChange={(e) => {
+                      setElokiAmount(e.target.value);
+                    }}
+                  />
                   <InputRightElement>
                     <CheckIcon color="green.500" />
                   </InputRightElement>
                 </InputGroup>
+                <RowFlexBox>
+                  <Word style={{ fontSize: "1.3rem", fontFamily: "pre-bold" }}>
+                    <pre>Total : {elokiAmount * data[data.length - 1].uv}</pre>
+                  </Word>
+                  &nbsp;TT (ThunderCore)
+                </RowFlexBox>
               </Chunk>
               <Chunk>
                 <RowFlexBox style={{ alignItems: "center", marginTop: "3vh" }}>
@@ -170,7 +321,7 @@ function Loan() {
                           border: "1px solid black",
                         }}
                       >
-                        Choose Token
+                        <Word style={{ fontSize: "1.5rem" }}>Choose Token</Word>
                       </Button>
                     </PopoverTrigger>
                     <Portal>
@@ -181,21 +332,16 @@ function Loan() {
                         </PopoverHeader>
                         <PopoverCloseButton />
                         <PopoverBody>
-                          {["Eloki", "Leash", "POO"].map((element) => (
-                            <RowFlexBox
-                              style={{
-                                border: "1px solid black",
-                                padding: "2px",
-                                justifyContent: "center",
-                                borderRadius: "30px",
-                                marginTop: "20px",
-                                marginBottom: "20px",
+                          {tokenList.map((element) => (
+                            <TokenBtn
+                              onClick={() => {
+                                setChosenToken(element);
                               }}
                             >
                               <Word style={{ fontSize: "2rem" }}>
                                 {element}
                               </Word>
-                            </RowFlexBox>
+                            </TokenBtn>
                           ))}
                         </PopoverBody>
                         <PopoverFooter>
@@ -205,53 +351,48 @@ function Loan() {
                     </Portal>
                   </Popover>
                 </RowFlexBox>
+                <RowFlexBox
+                  style={{
+                    padding: "3% 0px 3% 10%",
+                    gap: "2%",
+                  }}
+                >
+                  <Image
+                    src={
+                      chosenToken === "LEASH"
+                        ? require("../../asset/leash.png")
+                        : require("../../asset/Eloki.png")
+                    }
+                    style={{ width: "50px" }}
+                  />
+                  <Word
+                    bold
+                    style={{ fontSize: "3rem", fontFamily: "shadow-into" }}
+                  >
+                    ${chosenToken}
+                  </Word>
+                </RowFlexBox>
+              </Chunk>
+              <Chunk>
+                <RowFlexBox style={{ alignItems: "center", marginTop: "3vh" }}>
+                  <SmallView>
+                    <Word white bold style={{ fontSize: "2rem" }}>
+                      step 3
+                    </Word>
+                  </SmallView>
+                </RowFlexBox>
               </Chunk>
             </ColumnFlexBox>
           </ShadowBox>
-          <CustomBtn>
+
+          <CustomBtn style={{ marginBottom: "10vh" }}>
             <Word bold white>
               Loan Submit
             </Word>
           </CustomBtn>
         </ColumnFlexBox>
       </UContainer>
-      <ColumnFlexBox
-        style={{
-          width: "100vw",
-          height: "19vh",
-          backgroundColor: "white",
-          overflow: "hidden",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <RowFlexBox style={{ alignItems: "center", justifyContent: "center" }}>
-          <Image
-            src={require("../../asset/Eloki.png")}
-            style={{ height: "40%" }}
-          />
-          <ColumnFlexBox>
-            <Word bold style={{ color: "#030063", fontSize: "2rem" }}>
-              $Eloki Tokenomics
-            </Word>
-            <Word style={{ color: "#030063", fontSize: "1.5rem" }}>
-              If you want to know more about $Eloki, come and check this
-            </Word>
-          </ColumnFlexBox>
-
-          <SmallView
-            style={{
-              marginLeft: "10vw",
-              height: "30%",
-              alignItems: "center",
-            }}
-          >
-            <Word bold white style={{ fontSize: "2rem" }}>
-              Tokenomics
-            </Word>
-          </SmallView>
-        </RowFlexBox>
-      </ColumnFlexBox>
+      <FooterTokenomics />
       <ColumnFlexBox
         style={{
           width: "100vw",
