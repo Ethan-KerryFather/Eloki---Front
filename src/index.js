@@ -10,6 +10,7 @@ import ElokiPage from "./pages/ilp/ElokiPage";
 import StakePage from "./pages/stake/StakePage";
 import SwapPage from "./pages/swap/SwapPage";
 import PoolPage from "./pages/pool/PoolPage";
+import MainInvestment from "./pages/Investment/MainInvestment";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/pool",
     element: <PoolPage />,
+  },
+  {
+    path: "/investment",
+    element: <MainInvestment />,
   },
 ]);
 

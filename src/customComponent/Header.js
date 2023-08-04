@@ -15,22 +15,10 @@ export const Header = () => {
         }}
       >
         <img
-          src={require("../asset/Eloki.png")}
+          src={require("../asset/HeaderIcon.png")}
           alt="logo"
-          style={{ width: "50px", marginRight: "5px" }}
+          style={{ width: "35px", marginRight: "5px" }}
         />
-        <Word
-          bold
-          white
-          style={{
-            paddingRight: "10px",
-            color: "white",
-            fontSize: "1.8rem",
-            letterSpacing: "0.2rem",
-          }}
-        >
-          Eloki
-        </Word>
       </RowFlexBox>
 
       {headMenu.map((element, index) => (
@@ -38,27 +26,15 @@ export const Header = () => {
           key={index}
           hover
           style={{
-            fontSize: "0.9rem",
-            paddingLeft: "1.5rem",
+            fontSize: "1rem",
+            paddingLeft: "2rem",
             color: "#f6f7fccc",
           }}
           onClick={() => {
             switch (element) {
-              case "Eloki":
-                navigate("/ilp");
-                break;
-              case "Loan":
-                navigate("/loan");
-                break;
-              case "Swap":
-                navigate("/swap");
-                break;
-              case "Stake":
-                navigate("/stake");
-                break;
-              case "pool":
-                navigate("/pool");
-                break;
+              // case "Eloki":
+              //   navigate("/ilp");
+              //   break;
               default:
                 break;
             }

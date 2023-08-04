@@ -69,12 +69,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const EContainer = styled.div`
-  background: rgb(18, 35, 193);
-  background: linear-gradient(
-    192deg,
-    rgba(18, 35, 193, 0.6825105042016807) 23%,
-    rgba(45, 219, 253, 0.5368522408963585) 100%
-  );
+  background-color: black;
   min-height: 100vh;
   width: 100vw;
 `;
@@ -89,9 +84,10 @@ export const UContainer = styled.div`
 export const Menu = styled.div`
   display: flex;
   flex-direction: row;
+
   align-items: center;
-  padding-left: 20px;
-  padding-top: 10px;
+  padding-left: 3%;
+  padding-top: 2%;
   flex-wrap: wrap;
 `;
 
