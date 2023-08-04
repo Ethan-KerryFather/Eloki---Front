@@ -157,6 +157,7 @@ function SwapPage() {
             marginTop: "2%",
             borderBottom: "3px solid white",
             padding: "0px 4px 0px 2px",
+            marginBottom: "5%",
           }}
         >
           <Word bold white style={{ fontSize: "1.4rem" }}>

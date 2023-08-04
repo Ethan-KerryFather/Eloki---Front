@@ -71,7 +71,8 @@ function StakePage() {
   ]);
 
   const [chosenMenu, setChosenMenu] = useState(1);
-
+  const [stakeAmount, setStakeAmount] = useState();
+  const [unstakeAmount, setUnstakeAmount] = useState();
   useEffect(() => {
     const interval = setInterval(() => {
       setData((prevData) => {
@@ -368,7 +369,15 @@ function StakePage() {
                   </ColumnFlexBox>
                 </RowFlexBox>
 
-                {chosenMenu === 1 ? <BoxStaking /> : <BoxUnStaking />}
+                {chosenMenu === 1 ? (
+                  <BoxStaking
+                    setStakeAmount={setStakeAmount}
+                    stakeAmount={stakeAmount}
+                    exchangeRate={data[data.length - 1].uv}
+                  />
+                ) : (
+                  <BoxUnStaking />
+                )}
               </Box>
             </ColumnFlexBox>
           </Box>

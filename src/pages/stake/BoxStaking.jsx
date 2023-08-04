@@ -7,7 +7,7 @@ import {
   Words,
 } from "../../customComponent/customComponent";
 
-const BoxStaking = () => {
+const BoxStaking = ({ stakeAmount = 0, setStakeAmount, exchangeRate }) => {
   return (
     <Box
       column
@@ -34,17 +34,28 @@ const BoxStaking = () => {
           <Words bold gray style={{ fontSize: "1rem" }}>
             Apply Amount($ELKI)
           </Words>
-          <RowFlexBox style={{ justifyContent: "flex-end", flex: 1 }}>
-            <Input type="number" placeholder="least 10000ELKI" width="80%" />
-          </RowFlexBox>
+          <ColumnFlexBox style={{ alignItems: "flex-end", flex: 1 }}>
+            <Input
+              type="number"
+              placeholder="least 10000ELKI"
+              width="80%"
+              value={stakeAmount}
+              onChange={(e) => {
+                setStakeAmount(e.target.value);
+              }}
+            />
+            <Words style={{ fontSize: "1rem" }}>
+              <pre>{stakeAmount * exchangeRate}TT</pre>
+            </Words>
+          </ColumnFlexBox>
         </RowFlexBox>
         <RowFlexBox style={{ width: "100%" }}>
           <Words bold gray style={{ fontSize: "1rem" }}>
-            Reward Amount($ELKI + $Leash)
+            Reward Amount($Leash)
           </Words>
           <RowFlexBox style={{ justifyContent: "flex-end", flex: 1 }}>
             <Words bold style={{ fontSize: "1rem" }}>
-              0 ELKI
+              {stakeAmount} Leash
             </Words>
           </RowFlexBox>
         </RowFlexBox>

@@ -37,17 +37,19 @@ const LiquidityElement = () => {
   return (
     <ColumnFlexBox
       style={{
+        minHeight: "40vh",
         backgroundColor: "white",
         boxShadow: "4px 1px 27px -9px rgba(0,0,0,0.61)",
       }}
     >
-      <ColumnFlexBox style={{ alignItems: "center", marginTop: "20px" }}>
+      {/* 비율 */}
+      <ColumnFlexBox style={{ alignItems: "center", marginTop: "3%" }}>
         <Word bold style={{ fontSize: "2rem", color: "#1f53ff" }}>
           Liquidity Pair Ratio
         </Word>
         <RowFlexBox
           style={{
-            width: "80%",
+            width: "90%",
             backgroundColor: "#59545b35",
             alignSelf: "center",
             paddingTop: "5px",
@@ -79,13 +81,7 @@ const LiquidityElement = () => {
               Eloki {ratio.Eloki}%
             </Word>
           </RowFlexBox>
-          <div
-            style={{
-              width: "2px",
-              backgroundColor: "gray",
-              height: "100%",
-            }}
-          />
+
           <RowFlexBox
             style={{
               flex: ratio.Leash,
@@ -110,6 +106,7 @@ const LiquidityElement = () => {
           </RowFlexBox>
         </RowFlexBox>
       </ColumnFlexBox>
+      {/* swap */}
       <RowFlexBox
         style={{
           width: "80%",
@@ -122,6 +119,7 @@ const LiquidityElement = () => {
         <Word style={{ fontSize: "1rem" }}>2%</Word>
       </RowFlexBox>
 
+      {/* amount */}
       <ColumnFlexBox style={{ alignItems: "center", marginTop: "20px" }}>
         <Word bold style={{ fontSize: "2rem", color: "#1f53ff" }}>
           Amount
@@ -246,10 +244,10 @@ const LiquidityElement = () => {
           alignItems: "center",
           justifyContent: "center",
           padding: "10px 0px 10px 0px",
-          width: "80%",
+          width: "70%",
           alignSelf: "center",
-          marginTop: "auto",
-          marginBottom: "3%",
+          marginTop: "4%",
+          marginBottom: "4%",
         }}
       >
         <Word white bold style={{ fontSize: "1.5rem" }}>
