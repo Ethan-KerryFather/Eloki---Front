@@ -1,48 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { Chunk, RowFlexBox, SmallView, Word } from "./customComponent";
-import { Image } from "@chakra-ui/react";
-import { styled } from "styled-components";
-import detectEthereumProvider from "@metamask/detect-provider";
+import React, { useEffect, useState } from "react";
+import { Button } from "@chakra-ui/react";
+import Web3 from "web3";
 
-const MetaMaskBtn = styled.div`
-  display: flex;
-  flex-direction: row;
-  position: fixed;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 4vh;
-  border-radius: 30px;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  right: 10px;
-  top: 10px;
-  background: rgba(202, 125, 243, 0.24);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(15.9px);
-  -webkit-backdrop-filter: blur(15.9px);
-  border: 1px solid rgba(19, 19, 19, 0.73);
-  z-index: 10;
-`;
-
-const ConnnectMetamask = ({ account }) => {
-  const detectMetamask = async () => {
-    console.log(window.ethereum);
-    const provider = await detectEthereumProvider();
+function ConnectMetamask() {
+  const [account, setAccount] = useState();
+  const connect = async () => {
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      console.log("Connected accounts:", accounts);
+      setAccount(accounts);
+    } catch (error) {
+      console.error("User denied account access");
+    }
   };
 
-  return (
-    <MetaMaskBtn onClick={() => {}}>
-      <Image
-        src={require("../asset/metamask.png")}
-        style={{ height: "40px" }}
-      />
-      <Word style={{ fontSize: "1rem", fontFamily: "pre-bold" }}>
-        {account ? account : "Connect Metamask"}
-      </Word>
-    </MetaMaskBtn>
-  );
-};
+  const asyncConnect = () => {
+    if (
+      typeof window.ethereum !== "undefined" ||
+      typeof window.web3 !== "undefined"
+    ) {
+      console.log("MetaMask is installed!");
+      connect();
+    } else {
+      console.log("Please install MetaMask!");
+    }
+  };
 
-export default ConnnectMetamask;
+  useEffect(() => {
+    if (typeof window.ethereum !== "undefined") {
+      window.ethereum.on("accountsChanged", function (accounts) {
+        console.log("Accounts changed:", accounts);
+      });
+      window.ethereum.on("chainChanged", function (chainId) {
+        console.log("Current chain ID:", chainId);
+        window.location.reload();
+      });
+    }
+  }, []);
+
+  return (
+    <Button colorScheme="green" onClick={asyncConnect}>
+      {account ? account : "Connect to Metamask"}
+    </Button>
+  );
+}
+
+export default ConnectMetamask;

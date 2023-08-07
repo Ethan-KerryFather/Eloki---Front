@@ -5,42 +5,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-import Loan from "./pages/loan/LoanPage";
-import ElokiPage from "./pages/ilp/ElokiPage";
-import StakePage from "./pages/stake/StakePage";
-import SwapPage from "./pages/swap/SwapPage";
-import PoolPage from "./pages/pool/PoolPage";
-import MainInvestment from "./pages/Investment/MainInvestment";
+import InvestmentPage from "./pages/Investment/InvestmentPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
-  {
-    path: "/ilp",
-    element: <ElokiPage />,
-  },
-  {
-    path: "/loan",
-    element: <Loan />,
-  },
-  {
-    path: "/stake",
-    element: <StakePage />,
-  },
+
   {
     path: "/investment",
-    element: <SwapPage />,
+    element: <InvestmentPage />,
   },
-  {
-    path: "/pool",
-    element: <PoolPage />,
-  },
-  // {
-  //   path: "/investment",
-  //   element: <MainInvestment />,
-  // },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

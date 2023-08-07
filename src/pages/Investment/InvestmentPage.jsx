@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   ColumnFlexBox,
@@ -10,10 +10,9 @@ import {
 import { Header } from "../../customComponent/Header";
 import FooterTokenomics from "../../customComponent/FooterTokenomics";
 import ConnnectMetamask from "../../customComponent/ConnectMetamask";
-import { styled } from "styled-components";
-import { Button, Checkbox, Highlight, Image, Input } from "@chakra-ui/react";
-import LiquidityElement from "./LiquidityElement";
-import SwapElement from "./SwapElement";
+import { Button, Checkbox, Input } from "@chakra-ui/react";
+
+import { HiOutlineUserCircle } from "react-icons/hi";
 import {
   Area,
   AreaChart,
@@ -26,7 +25,7 @@ import {
 import Dropdown from "../../customComponent/Dropdown";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
-function SwapPage() {
+function InvestmentPage() {
   const [data, setData] = useState([
     { uv: 0, pv: 2400, amt: 2400 },
     { uv: 1, pv: 2400, amt: 2400 },
@@ -67,7 +66,33 @@ function SwapPage() {
   return (
     <EContainer>
       <Header />
-      <ConnnectMetamask />
+      <RowFlexBox
+        row
+        style={{
+          position: "absolute",
+          right: "1%",
+          top: "1%",
+          alignItems: "center",
+          flexWrap: "nowrap",
+        }}
+      >
+        <RowFlexBox
+          style={{
+            backgroundColor: "black",
+            borderRadius: "30px",
+            padding: "3px",
+            marginRight: "3%",
+          }}
+        >
+          <HiOutlineUserCircle
+            style={{ width: "40px", height: "40px" }}
+            color="white"
+          />
+        </RowFlexBox>
+
+        <ConnnectMetamask />
+      </RowFlexBox>
+
       <UContainer style={{ minHeight: "100vh", marginBottom: "10vh" }}>
         <ColumnFlexBox
           style={{
@@ -464,7 +489,7 @@ function Strategies() {
             <Word
               style={{ fontSize: "0.7rem", color: "gray", textAlign: "center" }}
             >
-              $ {inputAmount * 10}
+              $ {inputAmount ? inputAmount * 10 : "0.0"}
             </Word>
           </ColumnFlexBox>
 
@@ -504,4 +529,4 @@ function Strategies() {
     </Box>
   );
 }
-export default SwapPage;
+export default InvestmentPage;

@@ -1,27 +1,26 @@
-import Web3 from "web3";
 import {
   GlobalStyle,
   EContainer,
   UContainer,
   Word,
-  Menu,
   RowFlexBox,
   ColumnFlexBox,
-  CustomBtn,
-  SmallView,
   Words,
   Chunk,
 } from "./customComponent/customComponent";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { useNavigate } from "react-router-dom";
 import { Header } from "./customComponent/Header";
 import FooterTokenomics from "./customComponent/FooterTokenomics";
 import { Image } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 export const headMenu = ["Investment", "Staking QVE"];
 
 function App() {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
     <EContainer>
       <GlobalStyle />
@@ -67,6 +66,7 @@ function App() {
 
         {/* 첫화면의 모든 글자들 */}
         <Chunk
+          data-aos="fadeUp"
           style={{
             display: "flex",
             flexFlow: "column nowrap",
@@ -85,7 +85,7 @@ function App() {
         </Chunk>
       </UContainer>
 
-      <FooterTokenomics />
+      <FooterTokenomics data-aos="fade-up" />
       <ColumnFlexBox
         style={{
           width: "100vw",
