@@ -198,3 +198,15 @@ export const TokenBtn = styled(RowFlexBox)`
     background-color: #0000d040;
   }
 `;
+
+export const HoverBtn = styled(Box)`
+  background-color: black;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: auto;
+  margin-bottom: 5%;
+
+  &:hover {
+    background-color: #3a3a3a;
+  }
+`;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@chakra-ui/react";
+import { Button, Image } from "@chakra-ui/react";
 import Web3 from "web3";
 
 function ConnectMetamask() {
@@ -41,7 +41,11 @@ function ConnectMetamask() {
   }, []);
 
   return (
-    <Button colorScheme="green" onClick={asyncConnect}>
+    <Button colorScheme="blue" onClick={asyncConnect}>
+      <Image
+        src={require("../asset/metamask.png")}
+        style={{ width: "100%", height: "100%", marginRight: "5px" }}
+      />
       {account ? account : "Connect to Metamask"}
     </Button>
   );

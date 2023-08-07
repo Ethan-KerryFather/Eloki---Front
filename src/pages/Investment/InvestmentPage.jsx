@@ -3,6 +3,7 @@ import {
   Box,
   ColumnFlexBox,
   EContainer,
+  HoverBtn,
   RowFlexBox,
   UContainer,
   Word,
@@ -24,6 +25,7 @@ import {
 } from "recharts";
 import Dropdown from "../../customComponent/Dropdown";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import FooterCorporate from "../../customComponent/FooterCorporate";
 
 function InvestmentPage() {
   const [data, setData] = useState([
@@ -295,6 +297,7 @@ function InvestmentPage() {
         </RowFlexBox>
       </UContainer>
       <FooterTokenomics />
+      <FooterCorporate />
     </EContainer>
   );
 }
@@ -513,19 +516,11 @@ function Strategies() {
           Balance : 0.0000 APX
         </Word>
       </Box>
-      <Box
-        style={{
-          backgroundColor: "#33343E",
-          alignItems: "center",
-          borderRadius: "10px",
-          marginTop: "auto",
-          marginBottom: "5%",
-        }}
-      >
-        <Word bold white style={{ fontSize: "2rem" }}>
+      <HoverBtn>
+        <Word bold white style={{ fontSize: "2rem", letterSpacing: "2px" }}>
           confirm
         </Word>
-      </Box>
+      </HoverBtn>
     </Box>
   );
 }

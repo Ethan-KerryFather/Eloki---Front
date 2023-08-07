@@ -14,6 +14,7 @@ import { Header } from "./customComponent/Header";
 import FooterTokenomics from "./customComponent/FooterTokenomics";
 import { Image } from "@chakra-ui/react";
 import { useEffect } from "react";
+import FooterCorporate from "./customComponent/FooterCorporate";
 
 export const headMenu = ["Investment", "Staking QVE"];
 
@@ -86,34 +87,8 @@ function App() {
       </UContainer>
 
       <FooterTokenomics data-aos="fade-up" />
-      <ColumnFlexBox
-        style={{
-          width: "100vw",
-          height: "19vh",
-          backgroundColor: "#000000ee",
-          overflow: "hidden",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <RowFlexBox>
-          <ColumnFlexBox>
-            <Word white style={{ fontSize: "1rem" }}>
-              Terms and Conditions
-            </Word>
-            <Word white style={{ fontSize: "1rem" }}>
-              Terms and Conditions
-            </Word>
-            <Word white style={{ fontSize: "1rem" }}>
-              Terms and Conditions
-            </Word>
-            <Word white style={{ fontSize: "1rem" }}>
-              Terms and Conditions
-            </Word>
-          </ColumnFlexBox>
-          <RowFlexBox></RowFlexBox>
-        </RowFlexBox>
-      </ColumnFlexBox>
+
+      <FooterCorporate />
     </EContainer>
   );
 }
