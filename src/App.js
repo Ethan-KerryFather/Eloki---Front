@@ -19,30 +19,37 @@ import { Header } from "./customComponent/Header";
 import FooterTokenomics from "./customComponent/FooterTokenomics";
 import { Image } from "@chakra-ui/react";
 
-export const headMenu = [
-  "Ecosystem",
-  "Governance",
-  "Docs",
-  "Developers",
-  "FAQ",
-];
+export const headMenu = ["Investment", "Staking QVE"];
 
 function App() {
   return (
     <EContainer>
       <GlobalStyle />
-      <Header />
+      <Header isLanding={true} />
 
       {/*Slide 1 */}
       <UContainer
         style={{
-          justifyContent: "flex-start",
+          justifyContent: "center",
           alignItems: "flex-start",
           paddingLeft: "2%",
-          paddingTop: "5%",
           width: "100%",
         }}
       >
+        <Image
+          src={require("./img/QVE2.png")}
+          alt="QVE"
+          style={{
+            position: "absolute",
+            zIndex: 10,
+            width: "50%",
+            right: "20%",
+            top: 0,
+            opacity: 1,
+            animation:
+              "rotateAnimation 4s cubic-bezier(.6,1.24,.67,.68) infinite alternate-reverse",
+          }}
+        />
         <Image
           src={require("./img/QVE.png")}
           alt="QVE"
@@ -63,15 +70,16 @@ function App() {
           style={{
             display: "flex",
             flexFlow: "column nowrap",
+            zIndex: "2",
           }}
         >
           <Words gray style={{ fontSize: "1.7rem" }}>
             Decentralized Investing Fund Liquidation Platform
           </Words>
-          <Words bold white style={{ fontSize: "5rem", display: "inline" }}>
+          <Words bold style={{ fontSize: "5rem", display: "inline" }}>
             For Asset Manager
           </Words>
-          <Word bold white style={{ fontSize: "5rem" }}>
+          <Word bold style={{ fontSize: "5rem" }}>
             For Personal Traders
           </Word>
         </Chunk>

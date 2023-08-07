@@ -1,4 +1,4 @@
-import { createGlobalStyle, css, styled } from "styled-components";
+import { createGlobalStyle, css, styled, keyframes } from "styled-components";
 import PretendardVariable from "../font/PretendardVariable.ttf";
 import ShadowInto from "../font/ShadowInto.ttf";
 export const GlobalStyle = createGlobalStyle`
@@ -60,6 +60,7 @@ export const GlobalStyle = createGlobalStyle`
       
     }
   }
+
 *{
   padding: 0;
   margin: 0;
@@ -69,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const EContainer = styled.div`
-  background-color: black;
+  background-color: #f1f3f8;
   min-height: 100vh;
   width: 100vw;
 `;

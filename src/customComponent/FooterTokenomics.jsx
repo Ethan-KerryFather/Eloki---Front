@@ -12,7 +12,6 @@ export default function FooterTokenomics() {
     <ColumnFlexBox
       style={{
         width: "100%",
-
         backgroundColor: "white",
         overflow: "hidden",
         alignItems: "center",
@@ -27,7 +26,7 @@ export default function FooterTokenomics() {
           width: "100%",
         }}
       >
-        <Image src={require("../asset/Eloki.png")} style={{ height: "20vh" }} />
+        <Image src={require("../img/QVE.png")} style={{ height: "20vh" }} />
         <ColumnFlexBox>
           <Words
             bold
@@ -37,7 +36,7 @@ export default function FooterTokenomics() {
               fontSize: "2rem",
             }}
           >
-            $Eloki Tokenomics
+            QVE Tokenomics
           </Words>
           <Words
             shadow
@@ -46,21 +45,9 @@ export default function FooterTokenomics() {
               fontSize: "1.5rem",
             }}
           >
-            Want to know more about Eloki?
+            Want to know more about QVE?
           </Words>
         </ColumnFlexBox>
-
-        <SmallView
-          style={{
-            marginLeft: "5%",
-            height: "40%",
-            alignItems: "center",
-          }}
-        >
-          <Words bold white shadow style={{ fontSize: "2rem" }}>
-            Tokenomics
-          </Words>
-        </SmallView>
       </RowFlexBox>
     </ColumnFlexBox>
   );

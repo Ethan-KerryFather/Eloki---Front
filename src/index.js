@@ -30,17 +30,17 @@ const router = createBrowserRouter([
     element: <StakePage />,
   },
   {
-    path: "/swap",
+    path: "/investment",
     element: <SwapPage />,
   },
   {
     path: "/pool",
     element: <PoolPage />,
   },
-  {
-    path: "/investment",
-    element: <MainInvestment />,
-  },
+  // {
+  //   path: "/investment",
+  //   element: <MainInvestment />,
+  // },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
