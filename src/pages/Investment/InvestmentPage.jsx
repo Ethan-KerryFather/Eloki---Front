@@ -303,8 +303,15 @@ function InvestmentPage() {
 }
 
 function Strategies() {
+  const [selectedFunction, setSelectedFunction] = useState("mint");
   const [inputVisibility, setInputVisibility] = useState(false);
   const [inputAmount, setInputAmount] = useState();
+  const [selectedStrategy, setSelectedStrategy] = useState({
+    firstStrategy: { name: "Arbitrage - Future Spread", isChecked: false },
+    secondStrategy: { name: "Arbitrage - Kimchi Premium", isChecked: false },
+    thirdStrategy: { name: "Soar & Plunge", isChecked: false },
+  });
+
   return (
     <Box
       shadow
@@ -331,6 +338,9 @@ function Strategies() {
         >
           <RowFlexBox
             style={{ backgroundColor: "white", borderRadius: "10px" }}
+            onClick={() => {
+              setSelectedFunction("mint");
+            }}
           >
             <Word
               style={{
@@ -363,17 +373,34 @@ function Strategies() {
             marginBottom: "4%",
             marginTop: "4%",
             boxShadow: "0px 2px 20px 0px rgba(0, 0, 0, 0.05)",
+            backgroundColor: selectedStrategy.firstStrategy.isChecked
+              ? "#4CD95150"
+              : "white",
           }}
         >
           <RowFlexBox
             style={{ justifyContent: "space-between", width: "100%" }}
           >
-            <Word style={{ fontSize: "1rem" }}>Arbitrage - Future Spread</Word>
+            <Word style={{ fontSize: "1rem" }}>
+              {selectedStrategy.firstStrategy.name}
+            </Word>
             <RowFlexBox style={{ alignItems: "center" }}>
               <Word style={{ fontSize: "0.7rem", marginRight: "" }}>
                 APY : 0.00%
               </Word>
-              <Checkbox colorScheme="green" style={{ marginLeft: "10px" }} />
+              <Checkbox
+                colorScheme="green"
+                style={{ marginLeft: "10px" }}
+                onChange={(e) => {
+                  setSelectedStrategy((prevState) => ({
+                    ...prevState,
+                    firstStrategy: {
+                      ...prevState.firstStrategy,
+                      isChecked: !prevState.firstStrategy.isChecked,
+                    },
+                  }));
+                }}
+              />
             </RowFlexBox>
           </RowFlexBox>
         </Box>
@@ -385,15 +412,32 @@ function Strategies() {
             padding: "4% 1% 4% 3%",
             marginBottom: "4%",
             boxShadow: "0px 2px 20px 0px rgba(0, 0, 0, 0.05)",
+            backgroundColor: selectedStrategy.secondStrategy.isChecked
+              ? "#4CD95150"
+              : "white",
           }}
         >
           <RowFlexBox
             style={{ justifyContent: "space-between", width: "100%" }}
           >
-            <Word style={{ fontSize: "1rem" }}>Arbitrage - Kimchi Premium</Word>
+            <Word style={{ fontSize: "1rem" }}>
+              {selectedStrategy.secondStrategy.name}
+            </Word>
             <RowFlexBox style={{ alignItems: "center" }}>
               <Word style={{ fontSize: "0.7rem" }}>APY : 0.00%</Word>
-              <Checkbox colorScheme="green" style={{ marginLeft: "10px" }} />
+              <Checkbox
+                colorScheme="green"
+                style={{ marginLeft: "10px" }}
+                onChange={(e) => {
+                  setSelectedStrategy((prevState) => ({
+                    ...prevState,
+                    secondStrategy: {
+                      ...prevState.secondStrategy,
+                      isChecked: !prevState.secondStrategy.isChecked,
+                    },
+                  }));
+                }}
+              />
             </RowFlexBox>
           </RowFlexBox>
         </Box>
@@ -405,15 +449,32 @@ function Strategies() {
             marginBottom: "%",
             //border: "0.1px gray solid",
             boxShadow: "0px 2px 20px 0px rgba(0, 0, 0, 0.05)",
+            backgroundColor: selectedStrategy.thirdStrategy.isChecked
+              ? "#4CD95150"
+              : "white",
           }}
         >
           <RowFlexBox
             style={{ justifyContent: "space-between", width: "100%" }}
           >
-            <Word style={{ fontSize: "1rem" }}>Soar & Plunge</Word>
+            <Word style={{ fontSize: "1rem" }}>
+              {selectedStrategy.thirdStrategy.name}
+            </Word>
             <RowFlexBox style={{ alignItems: "center" }}>
               <Word style={{ fontSize: "0.7rem" }}>APY : 0.00%</Word>
-              <Checkbox colorScheme="green" style={{ marginLeft: "10px" }} />
+              <Checkbox
+                colorScheme="green"
+                style={{ marginLeft: "10px" }}
+                onChange={(e) => {
+                  setSelectedStrategy((prevState) => ({
+                    ...prevState,
+                    thirdStrategy: {
+                      ...prevState.thirdStrategy,
+                      isChecked: !prevState.thirdStrategy.isChecked,
+                    },
+                  }));
+                }}
+              />
             </RowFlexBox>
           </RowFlexBox>
         </Box>
@@ -461,7 +522,7 @@ function Strategies() {
                   }}
                 >
                   <li style={{ color: "white", padding: "10px 0px 10px 0px" }}>
-                    Arbitrage - Kimchi
+                    {selectedStrategy.firstStrategy.name}
                   </li>
                   <li
                     style={{
@@ -470,10 +531,10 @@ function Strategies() {
                       padding: "10px 0px 10px 0px",
                     }}
                   >
-                    Arbitrage - Future Spread
+                    {selectedStrategy.secondStrategy.name}
                   </li>
                   <li style={{ color: "white", padding: "10px 0px 10px 0px" }}>
-                    Soar & Plunge
+                    {selectedStrategy.thirdStrategy.name}
                   </li>
                 </ul>
               </Dropdown>
